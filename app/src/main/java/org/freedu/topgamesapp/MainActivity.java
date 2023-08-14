@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -21,21 +22,18 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
 
         gameData = new TopGameModel[]{
                 new TopGameModel("Fifa 23", "EA Sports", R.drawable.fifa),
-                new TopGameModel("eFootball 23", "Konami", R.drawable.efootball),
-                new TopGameModel("Pokemon", "Pokemon", R.drawable.pokemon),
-                new TopGameModel("Clash of Clans", "EA Sports", R.drawable.fifa),
-                new TopGameModel("Warship", "EA Sports", R.drawable.fifa),
-                new TopGameModel("NFL 23", "EA Sports", R.drawable.fifa),
-                new TopGameModel("Angry Birds", "EA Sports", R.drawable.fifa),
-                new TopGameModel("Tample Run", "EA Sports", R.drawable.fifa),
-                new TopGameModel("Clash Royal", "EA Sports", R.drawable.fifa),
-                new TopGameModel("Subway Surfers", "EA Sports", R.drawable.fifa),
-                new TopGameModel("Real Cricket 23", "EA Sports", R.drawable.fifa),
-                new TopGameModel("PUBG", "EA Sports", R.drawable.fifa),
-                new TopGameModel("Free Fire", "EA Sports", R.drawable.fifa),
-                new TopGameModel("Call of Duty", "EA Sports", R.drawable.fifa),
-                new TopGameModel("GTA-V", "EA Sports", R.drawable.fifa),
-                new TopGameModel("Minecraft", "EA Sports", R.drawable.fifa)
+                new TopGameModel("eFootball", "Konami", R.drawable.efootball),
+                new TopGameModel("Clash of Clans", "Supercell", R.drawable.coc),
+                new TopGameModel("Clash Royal", "Supercell", R.drawable.cr),
+                new TopGameModel("PUBG", "PUBG", R.drawable.pubg),
+                new TopGameModel("Free Fire", "Free file", R.drawable.freefire),
+                new TopGameModel("Call of Duty", "Call of Duty", R.drawable.cod),
+                new TopGameModel("Real Football", "Real", R.drawable.rfootball),
+                new TopGameModel("Angry Birds", "Angry Birds", R.drawable.angrybird),
+                new TopGameModel("Tample Run", "Tample Run", R.drawable.templerun),
+                new TopGameModel("UNO", "UNO", R.drawable.uno),
+                new TopGameModel("8 Ball Pool", "8 Ball Pool", R.drawable.ballpool),
+                new TopGameModel("Ludo Star", "Ludo Star", R.drawable.ludostar),
         };
 
         adaptar = new TopGameAdaptar(gameData);
@@ -49,5 +47,10 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     @Override
     public void onClick(View view, int pos) {
         Toast.makeText(this, "Game: "+gameData[pos].getGameName()+", Company: "+gameData[pos].getCompanyName(), Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+        intent.putExtra("game",gameData[pos].getGameName());
+        intent.putExtra("company",gameData[pos].getCompanyName());
+        intent.putExtra("img",gameData[pos].getGameImg());
+        startActivity(intent);
     }
 }
